@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import Header from "../components/Header";
+import ClientSideAuthProvider from "@components/ClientSideAuthProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,17 +13,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
+        <Header/>
         <div className="m-2">
-          <a href="/api/auth/signout"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2 block w-fit"
-          >
-            Sign out
-          </a>
-          {children}
+          <ClientSideAuthProvider>
+            {children}
+          </ClientSideAuthProvider>
         </div>
       </body>
     </html>

@@ -2,3 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+h1 {
+  @apply text-2xl font-bold mb-4;
+}
+
+h2 {
+    @apply text-xl font-bold mb-2;
+}
+
+
+nav a {
+  @apply text-blue-500 hover:underline;
+}

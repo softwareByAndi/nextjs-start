@@ -11,8 +11,8 @@ export const options: NextAuthOptions = {
         CredentialsProvider({
             name: "Credentials",
             credentials: {
-                username: { label: "Username:", type: "text", placeholder: "your-username" },
-                password: { label: "Password:", type: "password", placeholder: "your-password" }
+                username: { label: "Username:", type: "text", placeholder: "username is test" },
+                password: { label: "Password:", type: "password", placeholder: "password is test" }
             },
             async authorize(credentials, req) {
                 /*
@@ -26,8 +26,8 @@ export const options: NextAuthOptions = {
                 const user = { 
                     id: "42", // id is expected to be a string.
                     name: "test", 
-                    password: "test", 
-                    session_data: "hello world" 
+                    password: "test",
+                    email: "test@test.com",
                 };
                 if (
                     credentials?.username === user.name 
@@ -36,7 +36,7 @@ export const options: NextAuthOptions = {
                     return {
                         id: user.id,
                         name: user.name,
-                        session_data: user.session_data
+                        email: user.email,
                     };
                 } else {
                     return null;
