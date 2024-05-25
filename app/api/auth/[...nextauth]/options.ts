@@ -45,7 +45,7 @@ export const options: NextAuthOptions = {
         })
     ],
     pages: {
-        signIn: `http://leafpi.shrew-goblin.ts.net`
+        signIn: `http://leafpi.shrew-goblin.ts.net:3000`
     },
     callbacks: {
         async redirect({url, baseUrl}) {
