@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
+## Deployment
+
+1. add environment variables to the Dockerfile
+2. build container `docker build -t nextjs-docker .` ( change `nextjs-docker` to the name of the docker container)
+3. run container `docker run -p 3000:3000 nextjs-docker`
+
+
 ## Getting Started
 
 First, run the development server:
