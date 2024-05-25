@@ -44,5 +44,15 @@ export const options: NextAuthOptions = {
             }
         })
     ],
+    pages: {
+        signIn: `http://leafpi.shrew-goblin.ts.net`
+    },
+    callbacks: {
+        async redirect({url, baseUrl}) {
+          return url.startsWith(baseUrl)
+            ? url
+            : baseUrl
+        }
+      }
 
 }
