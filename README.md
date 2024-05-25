@@ -1,32 +1,55 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## setup
+### github oauth key
+in github, go to `settings >> developer settings >> new oauth app` and generate a new oauth app
+- dev homepage url: `http://localhost:3000` 
+- dev auth callback url: `http://localhost:3000/api/auth/callback/github`
+copy the client key and generate a client secret. this will go in the `.env.local` file
+
+### .env file
+generate a random secret in the terminal. And name it `NEXTAUTH_SECRET`
+``` bash
+openssl rand -base64 32 # generates random secret
+```
+``` bash
+# >> .env.local
+
+# change url to current host domain / ip
+# in my case, hosting the server behind a CGNAT using tailscale,
+#     the http and port parts are required to properly redirect
+#     during signin.
+
+# comment out to default to localhost
+NEXTAUTH_URL="http://leafpi.shrew-goblin.ts.net:3000"
+
+NEXTAUTH_SECRET={the secret generated from openssl rand -base64 32}
+
+GITHUB_SECRET={github client secret}
+GITHUB_ID={github client id}
+```
+
+### update package.json
+update the `-H domain` parts of `npm run dev` and `npm run start` sections in `package.json`
+
+### update Dockerfile
+if hosting using docker, update the dockerfile to include the `.env` values
+
 
 ## Deployment
 
+### Docker Deployment
 1. add environment variables to the Dockerfile
-2. build container `docker build -t nextjs-docker .` ( change `nextjs-docker` to the name of the docker container)
-3. run container `docker run -p 3000:3000 nextjs-docker`
-
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. build container 
+    - ( change `nextjs-docker` to the name of the docker container )
+``` bash
+docker build -t nextjs-docker .
+```
+3. run container 
+``` bash
+docker run -p 3000:3000 nextjs-docker
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## Learn More
 

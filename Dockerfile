@@ -39,7 +39,13 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV Production
-ENV NEXTAUTH_URL http://leafpi.shrew-goblin.ts.net
+# Change this to your domain
+ENV NEXTAUTH_URL http://leafpi.shrew-goblin.ts.net:3000
+# uncomment and update these with your .env values
+ENV NEXTAUTH_SECRET 1234567890
+# ENV GITHUB_SECRET 1234567890
+# ENV GITHUB_ID 1234567890
+
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
